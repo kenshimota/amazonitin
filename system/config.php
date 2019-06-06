@@ -8,8 +8,8 @@
 **/
 
 /* Clase que contendra la configuracion de nuestra aplicacion */
-class Config
-{
+class Config{
+	
 	/* Funcion que se encargara de cargar los datos de configuracion de 
 	nuestra aplicacion actualmente */
 	public static function set( $config = array() ){
@@ -37,7 +37,6 @@ class Config
 
 		self::$config['uri'] = substr($_SERVER["REQUEST_URI"], 1); // host actual
 		self::$config["method"] = $_SERVER["REQUEST_METHOD"]; // obteniedo el method que se utilizara formalmente
-		self::$config['folder_config'] = "{$_SERVER['DOCUMENT_ROOT']}/../config";
 
 		# busca con formalidad si el sistema tiene una escena de conexion segura o no
 		# https or http
@@ -46,11 +45,11 @@ class Config
 		# verifica si existe un controlador determinado descomprimiendo la url
 		if(!self::$config['uri'])
 			self::$config["section_uri"] = [];
-		else{
-			self::$config["location"] = explode("?",self::$config['uri']);
-			self::$config["query"] = empty(self::$config["location"][1]) ? [] : $_GET;
-			self::$config["section_uri"] = explode("/", self::$config["location"][0] );
-		}
+		else
+			self::$config["section_uri"] = explode("/", explode("?",self::$config['uri'])[0] );
+
+		// Carpeta  actual de las clases de configuracion
+		self::$config['folder_config'] = "{$_SERVER['DOCUMENT_ROOT']}/../config"; 
 	}
 
 	private static $config;
