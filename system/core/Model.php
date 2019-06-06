@@ -231,10 +231,8 @@ class Model extends JoinModel implements IteratorAggregate{
 		$fields = $this->getFields();
 
 		foreach ($fields as $key => $value) {
-
 			# solo si existe un cierto campo dentro del registro
 			# este podra ser agregado a la lista de parametros a enviar
-
 			if(isset($record[$value]))
 				$values_fields[ $value ] = self::$connect->real_escape_string( strip_tags($record[$value]) );
 		}
@@ -266,7 +264,7 @@ class Model extends JoinModel implements IteratorAggregate{
 
 			$this->last_query = $query;
 
-			$result = self::$connect->query($query) or $this->consoleErrorSystem("Ocurrio un error al tratar de crear un registro query -> (\" insert into {$this->table} ({$text_fields}) values ({$values_text_fields}) \")");
+			$result = self::$connect->query($query) or die(self::$connect->error);
 
 			// obteniendo la identidad antes que lo cambie por otra tabla
 			$id = self::$connect->insert_id;
@@ -405,8 +403,8 @@ class Model extends JoinModel implements IteratorAggregate{
 	private function getRecord($result){
 
 		# esto permite saber si hubo una buena consulta 
-		if($result)
-		{
+		if($result){
+
 			switch ($result->num_rows) {
 				case 1:
 					foreach ($result->fetch_assoc() as $key => $value)
@@ -419,6 +417,7 @@ class Model extends JoinModel implements IteratorAggregate{
 				default:
 
 					if($result->num_rows > 1){
+
 
 						$this->multiple = true;
 

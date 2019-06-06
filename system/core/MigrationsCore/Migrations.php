@@ -1,7 +1,5 @@
 <?php
-
-# esta funcion se ocupa las migraciones
-require_once "table_migrations.php";
+include("table_migrations.php");
 
 # clase encargada de las migraciones hacia la base de datos
 class Migrations extends table_migrations{

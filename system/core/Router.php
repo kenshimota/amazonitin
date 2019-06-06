@@ -221,7 +221,7 @@ class Router{
 			# verifico si existe esa direccion de url
 			if(stripos(Config::get("uri"), "{$space['uri']}") !== false){
 
-				$uri = Config::get("uri");
+				$uri = Config::get("location")[0];
 				$uri = str_ireplace("{$space['uri']}", "", $uri);
 
 				Config::set([

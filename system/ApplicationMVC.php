@@ -56,7 +56,7 @@ class ApplicationMVC{
 		se incluyan en nuevas versiones del sistema */
 		foreach ($class_config as $key) {
 			if(!class_exists($key))
-				$this->addClassConfig($key) or die("problemas para obtener el archivo {$key}.php en la configuración");
+				$this->addClassConfig($key) or die("problemas para obtener el archivo {$key}.php en la configuración en el directorio ".Config::get("folder_config"));
 		}
 
 		# segundo cargaremos las rutas actuales de la aplicacion para que no ocurra errores

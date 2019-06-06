@@ -11,7 +11,7 @@ class View{
 		/* en busqueda de un complemento que contenga la funcion mientras
 		este instalado */
 		foreach ($complements as $complement => $version) {
-			if( method_exists(new $complement, $function) ){
+			if( method_exists($complement, $function) ){
 				$class = new $complement();
 				call_user_func_array([$class, $function], $params);
 				return true;
