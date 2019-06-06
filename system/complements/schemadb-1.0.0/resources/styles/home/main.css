@@ -1,0 +1,21 @@
+/* Estoy en main css */
+#main-schema
+{
+	background: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+/* estilos al formulario de crear tablas */
+#form-create-table{
+	margin: 0px auto;
+	border: 0px;
+	max-width: 600px;
+}
+
+/* estilo que tendra */
+#form-create-table .row {
+	margin-top: 5px;
+}

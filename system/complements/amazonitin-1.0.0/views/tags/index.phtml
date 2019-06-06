@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recursos de la aplicaci&oacute;n web</title>
+	<?= $this->add_pack("Jquery"); ?>
+	<?= $this->add_pack("Bootstrap"); ?>
+</head>
+<body>
+	<?= var_dump(Report::getErrors()); ?>
+	<?= $this->get_template("_navbar-tags.phtml") ?>
+	
+	<div class="container bg-light" style="border:1px solid #ddd; border-radius: 5px;margin-top: 5px;">
+		<h1 class="modal-title">Sobre TagsResources..!</h1>
+		<span style="color: #666;">Este es el controlador encargado de manejar los datos de de los recursos que necesitan a la hora de desarrollar tu aplicaci&oacute;n web como las imagenes que usaras, los scripts y tus estilos hechos en css</span>
+	</div>
+
+	<div class="container" style="margin-top: 5px;">
+		<h5 class="modal-title" id="javascripts">1.1 Agregando Scripts a Mi pagina Web </h5>
+		
+		<span> La forma de agregar un script a tu pagina, es una simple llamada a una funcion que te permite agregar los script</span>
+		<span><br><?php $this->add_image("learning/add_script_1.jpg"); ?><br></span>
+
+		<span> obtenidos dentro de la carpeta app/resources/javascripts/</span>
+		<span><br><?php $this->add_image("learning/app_resources_javascript.jpg"); ?><br></span>
+
+	</div>
+
+</body>
+</html>

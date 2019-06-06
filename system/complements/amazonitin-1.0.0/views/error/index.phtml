@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Errores del sistema</title>
+	<?php
+
+		# agregando los paquete que necesito para la presentacion de los errores
+		$this->add_pack("Jquery");
+		$this->add_pack("Bootstrap");
+
+	?>
+</head>
+<body>
+	<div class="container bg-dark" id='container' style="margin-top: 10px;padding: 10px 5px; border-radius: 5px 5px 0px 0px;max-width: 400px;">
+	<div id="errors">
+		<?php foreach(Report::getErrors() as $error){?>
+			<div class="alert alert-danger" style="text-align: justify;">
+				<label style="font-weight: bold;">Error: </label> <?php echo nl2br($error) ?>
+			</div>
+		<?php }?>
+	</div>
+	<div  id='info' style="text-align: justify;">
+		<?php foreach(Report::getInfos() as $info){ ?>
+			<div class="alert alert-info">
+				<label style="font-weight: bold;">Notice: </label> <?php echo nl2br($info) ?>
+			</div>
+		<?php }?>
+	</div>
+</div>
+</body>
+</html>

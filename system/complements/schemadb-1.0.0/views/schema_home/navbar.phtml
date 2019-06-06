@@ -1,0 +1,34 @@
+<div class="navbar navbar-expand-lg navbar-dark bg-info" role="navigation">
+	<div class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+
+			<a class="navbar-brand">
+				<span>
+					<?php
+						# obteniendo el icono desde la carpeta del complemento
+						$this->add_image_server("schemadb", "cube.png",[
+							"styles"=> [
+								"margin-top" => "-5px",
+								"width" => "40px"
+							],
+							"params_url" => ["maxWidth" => 100]
+
+						]);
+					?>
+				</span>
+				<span>SchemaDb</span>
+			</a>
+
+			<li class="nav-item">
+				<a href="#" class="nav-link">Tablas</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">Migraciones</a>
+			</li>
+			<li class="nav-item">
+				<a href="#" class="nav-link">Semillas</a>
+			</li>
+
+		</ul>
+	</div>
+</div>
