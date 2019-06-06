@@ -118,7 +118,7 @@ class Packs{
 
 						# obteniendo archivo del sistema
 						$files[$file] = [
-							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['HTTP_HOST']}/tags/packs/complements/scripts/name/{$name}/version/{$version}"),
+							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['SERVER_NAME']}/tags/packs/complements/scripts/name/{$name}/version/{$version}"),
 							'type' => $type
 						];
 
@@ -128,7 +128,7 @@ class Packs{
 
 						# obteniendo archivo del sistema
 						$files[$file] = [
-							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['HTTP_HOST']}/tags/packs/complements/styles/name/{$name}/version/{$version}"),
+							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['SERVER_NAME']}/tags/packs/complements/styles/name/{$name}/version/{$version}"),
 							'type' => $type
 						];
 					break;
@@ -136,7 +136,7 @@ class Packs{
 					default:
 						# obteniendo archivo del sistema
 						$files[] = [
-							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['HTTP_HOST']}/tags/packs/complements/scripts/name/{$name}/version/{$version}"),
+							'url' => $this->convertDirToUri($file, Config::get("REQUEST_SCHEMA")."://{$_SERVER['SERVER_NAME']}/tags/packs/complements/scripts/name/{$name}/version/{$version}"),
 							'type' => $type
 						];
 
