@@ -201,18 +201,10 @@ class Model extends JoinModel implements IteratorAggregate{
 				}
 				$i++;
 			}
-
-			if($this->last_record)
-			{
-				$query = "update {$this->table} set {$params_new} where id='{$this->last_record['id']}'";
-
+			
+			if($this->last_record){
+				$query = "UPDATE {$this->table} SET {$params_new} WHERE {$this->table}.`id` = '{$this->last_record['id']}'";
 				$result = self::$connect->query($query) or $this->consoleErrorSystem("Ocurrion un problema al tratar de actualizar un registro (\"update {$this->table} set {$params_new} where id='{$this->last_record['id']}'\")");
-
-				if( strcmp($this->table, "schema_event_records") ){
-					$migrations = new Migrations();
-					$migrations->event_record($this->table, "U", $this->last_record["id"], "Actualizando Registro");
-				}
-
 				return $this;
 			}
 		}
@@ -268,12 +260,6 @@ class Model extends JoinModel implements IteratorAggregate{
 
 			// obteniendo la identidad antes que lo cambie por otra tabla
 			$id = self::$connect->insert_id;
-
-			if( strcmp($this->table, "schema_event_records") ){
-				$migrations = new Migrations();
-				$migrations->event_record($this->table, "C", self::$connect->insert_id, "Creacion de Registro");
-			}
-
 			if($result)
 				return $this->find($id);
 			
@@ -325,12 +311,13 @@ class Model extends JoinModel implements IteratorAggregate{
 	}
 
 	# cargara todo lo que pueda conseguir en la carpeta de modelos
-	public function load_models(){
+	public function load_models($dir = ""){
 
-		$path_app = Config::get("path_application");
-		$path_models = Config::get("path_models");
-
-		$dir = "{$path_app}/{$path_models}";
+		if(empty($dir)){
+			$path_app = Config::get("path_application");
+			$path_models = Config::get("path_models");
+			$dir = "{$path_app}/{$path_models}";
+		}
 
 		# verifica la existencia de carpeta en donde encontrara los modelos
 		if(is_dir($dir)){
@@ -371,20 +358,10 @@ class Model extends JoinModel implements IteratorAggregate{
 
 		if ( array_key_exists("id", $this->last_record) ) {
 			$id = $this->last_record["id"];
-			
 			$query = "delete from {$this->table} where id='{$this->last_record['id']}'";
-			
 			$result = self::$connect->query($query) or $this->consoleErrorSystem("Ocurrio un problema al eliminar el registro query -> (\"delete from {$this->table} where id='{$this->last_record['id']}'\") ");
-			
 			Report::setInfo("Eliminación de un registro");
-			
 			$this->last_record = array();
-			
-			if( strcmp($this->table, "schema_event_records") ){
-				$migrations = new Migrations();
-				$migrations->event_record($this->table, "D", $id, "Eliminando Registro");
-			}
-
 			return [];
 		}
 		else

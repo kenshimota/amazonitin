@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
 /* Clase por defecto que se encargara de renderizar los archivos de acuerdo a tipo de
 Archivo que son */
 class TagsController extends Controller{
