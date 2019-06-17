@@ -80,6 +80,12 @@ Actions that executa in databases
 		print("\nPlease selected a option and add a argument\n\t$ az new --object_to_create=['controller', 'model', 'migration', 'project'] --name\nError option selected\n\n");
 	}
 
+	// esta funcion se encarga de hacer el nuevo modelo para realizar la migracion
+	//
+	private function _newModel(){
+
+	}
+
 	// esta funcion se ocupa de hacer una migracion nueva incorporada al sistema de shell
 	private function _newMigration($name = "new-migration"){
 		try{
@@ -90,6 +96,7 @@ Actions that executa in databases
 			$file = "{$this->_dirStorage}/{$this->_config["application"]->app->path_config}/db/migrations/".date("YmdHis")."-{$name}.sql";
 			print("Creting File of Migration {$file}\n");
 			file_put_contents($file,"");
+			return $file;
 
 		} catch(Exception $e){
 			die($e->getMessage());
