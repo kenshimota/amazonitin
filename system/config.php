@@ -35,9 +35,11 @@ class Config
 	/* -- Constructor de la clase --  */
 	public function __construct(){
 
+
 		self::$config['uri'] = substr($_SERVER["REQUEST_URI"], 1); // host actual
 		self::$config["method"] = $_SERVER["REQUEST_METHOD"]; // obteniedo el method que se utilizara formalmente
-		self::$config['folder_config'] = "{$_SERVER['DOCUMENT_ROOT']}/../config";
+		$app = str_ireplace("index.php", "", "/var/www/html/red_social_new/public/index.php");
+		self::$config['folder_config'] = "{$app}/../config";
 
 		# busca con formalidad si el sistema tiene una escena de conexion segura o no
 		# https or http
@@ -47,7 +49,9 @@ class Config
 		if(!self::$config['uri'])
 			self::$config["section_uri"] = [];
 		else{
-			self::$config["location"] = explode("?",self::$config['uri']);
+			$path = str_ireplace($_SERVER["DOCUMENT_ROOT"], "", $app);
+			$host = str_ireplace(self::$config['uri'], "", $path);
+			self::$config["location"] = explode("?", $host);
 			self::$config["query"] = empty(self::$config["location"][1]) ? [] : $_GET;
 			self::$config["section_uri"] = explode("/", self::$config["location"][0] );
 		}
